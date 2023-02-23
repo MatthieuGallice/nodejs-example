@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: pgadmin
+  name: pgadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: pgadmin
+  template:
+    metadata:
+      labels:
+        io.kompose.service: pgadmin
+    spec:
+      containers:
+      - env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: pgadmin
+              key: pgadmin_email
+        - name: PGADMIN_DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pgadmin
+              key: pgadmin_password
+        image: dpage/pgadmin4:latest
+        name: pgadmin
+        ports:
+        - containerPort: 80
+        resources: {}
