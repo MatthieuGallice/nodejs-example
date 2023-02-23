@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - env:            
-            - name: DB_DATABASE
+            - name: DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: api
@@ -52,7 +52,7 @@ spec:
                 secretKeyRef:
                   name: api
                   key: db_host
-            - name: ConnectionStrings__DefaultConnection
+            - name: ConnectionStrings
               value: Server=tcp;Database={DATABASE};Port={PORT};UID={DB_USERNAME};Password={DB_PASSWORD};
           image: matthieug76120/nodejs:1.0
           name: api
@@ -60,7 +60,7 @@ spec:
             - containerPort: 81
           resources:
             limits:
-              cpu: 500m
+              cpu: 400m
             requests:
               cpu: 200m
       restartPolicy: Always
