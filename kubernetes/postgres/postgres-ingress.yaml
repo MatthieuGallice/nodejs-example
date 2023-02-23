@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: postgres
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "dev-postgres.localdev.me"
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: postgres
+                port:
+                  number: 5432
+            path: /
