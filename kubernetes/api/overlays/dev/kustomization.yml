@@ -3,6 +3,6 @@ kind: Kustomization
 bases:
   - ../../base
 patchesStrategicMerge:
-  - api-hpa.yaml
   - api-secrets.yaml
   - api-ingress.yaml
+  - api-hpa.yaml
